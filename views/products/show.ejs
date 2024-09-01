@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <%- include('../partials/header')%>
+        <div class="d-flex justify-content-between" style="width: 100%;">
+            <div class="card m-3" style="width: 19rem;height: 100%;" class="image-container">
+                <img src="<%=foundProduct.img%>" class="card-img-top" alt="...">
+
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%=foundProduct.price%>
+                    </h5>
+                    <p class="card-text">
+                        <%=foundProduct.name%>
+                    </p>
+                    <p class="card-text">
+                        <%=foundProduct.desc%>
+                    </p>
+
+                </div>
+            </div>
+            <div style="width: 50%;" class="m-3 ">
+                <div class="col-lg-4 p-4 border border-2 rounded" style="width: 60%;">
+                    <p class="fs-2">Leave a review</p>
+                    <form action="/products/<%=foundProduct._id%>/review" method="POST">
+                        <div class="mb-3">
+                            <fieldset class="starability-basic">
+                                <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked
+                                    aria-label="No rating." />
+                                <input type="radio" id="first-rate1" name="rating" value="1" />
+                                <label for="first-rate1" title="Terrible">1 star</label>
+                                <input type="radio" id="first-rate2" name="rating" value="2" />
+                                <label for="first-rate2" title="Not good">2 stars</label>
+                                <input type="radio" id="first-rate3" name="rating" value="3" />
+                                <label for="first-rate3" title="Average">3 stars</label>
+                                <input type="radio" id="first-rate4" name="rating" value="4" />
+                                <label for="first-rate4" title="Very good">4 stars</label>
+                                <input type="radio" id="first-rate5" name="rating" value="5" />
+                                <label for="first-rate5" title="Amazing">5 stars</label>
+                            </fieldset>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fs-5" for="comment">Comment:</label>
+                            <textarea class="form-control" type="text" name="comment" id="comment"></textarea>
+                        </div>
+                        <button class="btn btn-sm btn-success">Add review</button>
+                    </form>
+                </div>
+                <% if(foundProduct.reviews.length>0){ %>
+                    <div class="col-lg-4 p-4 border border-2 mt-3 rounded" style="width: 70%;">
+                        <p class="fs-4">Reviews</p>
+                        <% for(let review of foundProduct.reviews){%>
+                            <div class="mt-1 rounded p-2 comment">
+                                <p class="starability-result" data-rating="<%=review.rating%>">
+                                    Rated: <%=review.rating%> stars
+                                </p>
+                                <div class="card-body">
+                                    <p class="card-text">Comment: <%=review.comment%>
+                                    </p>
+                                    <a href="#" class="btn btn-primary">Delete</a>
+                                </div>
+                            </div>
+                            <% } %>
+
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+</body>
+
+</html>

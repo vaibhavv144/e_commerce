@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+
+</head>
+
+<body>
+    <%- include('../partials/header')%>
+        <div class="m-auto p-4" style="width: 35rem;">
+            <form class="needs-validation" action="/products" method="post" novalidate>
+                <div class="form-group m-2">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please choose a name.
+                    </div>
+                </div>
+                <div class="form-group m-2">
+                    <label for="image">Image</label>
+                    <input type="text" class="form-control" id="image" name="img" placeholder="Image" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please choose a image.
+                    </div>
+                </div>
+                <div class="form-group m-2">
+                    <label for="price">Price</label>
+                    <input type="text" class="form-control" id="price" name="price" placeholder="Price" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please choose a price.
+                    </div>
+                </div>
+                <div class="form-group m-2">
+                    <label for="desc">Desc</label>
+                    <input type="text" class="form-control" id="desc" name="desc" placeholder="Desc" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please choose desc.
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <script>
+            (() => {
+                'use strict'
+                const forms = document.querySelectorAll('.needs-validation')
+
+                // Loop over them and prevent submission
+                Array.from(forms).forEach(form => {
+                    form.addEventListener('submit', event => {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+            })()
+        </script>
+
+</body>
+
+</html>

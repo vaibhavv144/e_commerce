@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <%- include('../partials/header')%>
+        <div class="d-flex flex-wrap">
+            <% for(let item of products){ %>
+                <div class="card m-3" style="width: 14rem;">
+                    <img src="<%=item.img%>" class="card-img-top p-2" alt="..." height="360px">
+                    <div class="card-body bottom">
+                        <h5 class="card-title">
+                            <%=item.price%>
+                        </h5>
+                        <p class="card-text">
+                            <%=item.name%>
+                        </p>
+                        <p class="card-text" class="overflow-container" id="textContainer">
+                            <%=item.desc%>
+                        </p>
+                        <a href="/products/<%=item._id%>" class="btn btn-primary">View</a>
+                        <%if(currentUser && currentUser.role==='seller' ){%>
+                            <a href="/products/<%=item._id%>/edit" class="btn btn-info btn-sm">Edit</a>
+                            <form class="d-inline-block" action="/products/<%=item._id%>?_method=DELETE" method="POST">
+                                <button class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                            <%}%>
+                                <form method="POST" action="/user/<%=item._id%>/add" class="d-inline-block m-1">
+                                    <button class="btn btn-sm btn-secondary">Add to Cart</button>
+                                </form>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+        <script src="/js/script.js"></script>
+</body>
+
+</html>

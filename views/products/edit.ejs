@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    
+</head>
+
+<body>
+    <%- include('../partials/header')%>
+    <div class="m-auto p-4" style="width: 35rem;">
+        <form action="/products/<%=foundProduct._id%>?_method=PATCH" method="post">
+            <div class="form-group m-2">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="<%=foundProduct.name%>">
+            </div>
+            <div class="form-group m-2">
+                <label for="image">Image</label>
+                <input type="text" class="form-control" id="image" name="img" value="<%=foundProduct.img%>">
+            </div>
+            <div class="form-group m-2">
+                <label for="price">Price</label>
+                <input type="text" class="form-control" id="price" name="price" value="<%=foundProduct.price%>">
+            </div>
+            <div class="form-group m-2">
+                <label for="desc">Desc</label>
+                <input type="text" class="form-control" id="desc" name="desc" value="<%=foundProduct.desc%>">
+            </div>
+            <button type="submit" class="btn btn-primary">Edit</button>
+        </form>
+    </div>
+
+    
+</body>
+
+</html>
